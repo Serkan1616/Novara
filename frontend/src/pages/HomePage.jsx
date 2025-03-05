@@ -1,17 +1,17 @@
 import React from 'react'
+import { Route, Routes, Link } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
-import {
-  Card,
-  Input,
-  Checkbox,
-  Button,
-  Typography,
-} from "@material-tailwind/react";
- 
 const HomePage = () => {
   return (
-    <h1>Home page</h1>
+    <>
+      <NavBar></NavBar>
+
+
+      <Link to="/Login">Login</Link>
+      <Link to="/register">Register</Link>
+    </>
   )
 }
 
-export default HomePage;
+export default HomePage
