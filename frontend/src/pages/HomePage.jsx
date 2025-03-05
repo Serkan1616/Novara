@@ -1,9 +1,17 @@
 import React from 'react'
 
+import {
+  Card,
+  Input,
+  Checkbox,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
+ 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <h1>Home page</h1>
   )
 }
 
-export default HomePage
+export default HomePage;

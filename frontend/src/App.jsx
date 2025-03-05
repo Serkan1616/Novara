@@ -1,40 +1,20 @@
-
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { Route, Routes, Link } from 'react-router-dom';
+import SignInPage from './pages/SignInPage';
+import RegisterPage from './pages/RegisterPage';
+import HomePage from './pages/HomePage';
 
 function App() {
 
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    // Backend'den kullanıcıları al
-    axios
-      .get('http://localhost:5000/api/users')  // Backend endpoint'ine GET isteği
-      .then((response) => {
-        setUsers(response.data); // Kullanıcıları state'e set et
-      })
-      .catch((error) => {
-        console.error('Veri çekme hatası:', error);
-      });
-  }, []);
-
   return (
     <div>
-      <h2>Kullanıcılar</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.username}</li>
-        ))}
-      </ul>
-
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <Routes>
+      <Route path="/" element={<HomePage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
     </div>
   );
-  ;
 }
 
 export default App
