@@ -13,8 +13,8 @@ import {
 
 const ProductCard = () => {
     return (
-        <Card className="w-96">
-            <CardHeader shadow={false} floated={false} className="h-96">
+        <Card className="w-96 mx-5">
+            <CardHeader shadow={false} floated={false} className="h-48">
                 <img
                     src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
                     alt="card-image"
@@ -38,15 +38,15 @@ const ProductCard = () => {
                     </Typography>
                 </div>
 
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3 text-yellow-500">
+                <div className="flex flex-col items-center justify-between">
+                    <div className="flex items-center space-x-3 text-yellow-500 mb-4">
                         <FaStar />
                         <FaStar />
                         <FaStar />
                         <FaStar />
                         <FaStarHalf />
                     </div>
-                    <Typography color="blue-gray" className="font-medium">
+                    <Typography color="blue-gray" className="font-bold">
                         $95.00
                     </Typography>
                 </div>

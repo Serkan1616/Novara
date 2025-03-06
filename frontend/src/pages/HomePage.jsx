@@ -3,6 +3,8 @@ import { Route, Routes, Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
 import NavCategoryMenu from '../components/NavCategoryMenu';
+import Recommandation from '../components/Recommandation';
+
 import CarouselCustomNavigation from '../components/CarouselCustomNavigation';
 import Footer from '../components/Footer';
 
@@ -14,14 +16,9 @@ const HomePage = () => {
       <NavBar />
       <NavCategoryMenu />
       <CarouselCustomNavigation />
-
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+      <Recommandation />
       <Footer />
     </div>
-
-
   )
 }
 
