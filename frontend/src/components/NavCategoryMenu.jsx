@@ -1,40 +1,38 @@
 import React from "react";
 import { FcElectronics } from "react-icons/fc";
-import { FaBaby } from "react-icons/fa6";
-import { FaCar } from "react-icons/fa";
-import { IoLogoGameControllerB } from "react-icons/io";
+import { FaBaby, FaCar, FaShopify, FaPersonCircleQuestion } from "react-icons/fa6";
+import { IoLogoGameControllerB, IoMdWatch } from "react-icons/io";
 import { MdOutlineSportsTennis } from "react-icons/md";
-import { IoMdWatch } from "react-icons/io";
 import { SiHomebridge } from "react-icons/si";
-import { FaShopify } from "react-icons/fa";
-import { FaPersonCircleQuestion } from "react-icons/fa6";
+
+const categories = [
+    { name: "Fashion", icon: <FaShopify /> },
+    { name: "Electronic", icon: <FcElectronics /> },
+    { name: "Home & Life", icon: <SiHomebridge /> },
+    { name: "Mother & Baby", icon: <FaBaby /> },
+    { name: "Personal Care", icon: <FaPersonCircleQuestion /> },
+    { name: "Jewelry & Watches", icon: <IoMdWatch /> },
+    { name: "Sports & Outdoors", icon: <MdOutlineSportsTennis /> },
+    { name: "Book, Music, Movie, Game", icon: <IoLogoGameControllerB /> },
+    { name: "Automotive & Motorcycle", icon: <FaCar /> },
+];
 
 const NavCategoryMenu = () => {
-
     return (
-        <>
-            <div>
-                <ul className="flex flex-row sm:flex-col md:flex-row lg-flex-row xl:flex-row  2xl:flex-row items-center justify-between p-4 bg-gray-200 gap-5">
-                    <li className="flex flex-row "><FaShopify className="mx-1"/>
-                    Fashion</li>
-                    <li className="flex items-center flex-row"><FcElectronics  className="mx-1"/>Electronic</li>
-                    <li className="flex items-center flex-row"><SiHomebridge className="mx-1"/>
-                    Home & Life</li>
-                    <li className="flex items-center  flex-row"><FaBaby className="mx-1"/>Mother & Baby</li>
-                    <li className="flex items-center flex-row"><FaPersonCircleQuestion className="mx-1"/>
-                    Personal Care</li>
-                    <li className="flex items-center flex-row"><IoMdWatch className="mx-1"/>
-                    Jewelry & Watches</li>
-                    <li className="flex items-center flex-row"><MdOutlineSportsTennis className="mx-1"/>
-                    Sports & Outdoors</li>
-                    <li className="flex items-center flex-row"><IoLogoGameControllerB className="mx-1"/>
-                    Book, Music, Movie, Game</li>
-                    <li className="flex items-center flex-row"><FaCar className="mx-1"/>Automotive & Motorcycle</li>
-                </ul>
-            </div>
-
-        </>
+        <nav className="bg-gray-100 py-2">
+            <ul className="max-w-7xl mx-auto flex flex-wrap lg:flex-nowrap justify-center lg:justify-between gap-3 px-4">
+                {categories.map((category, index) => (
+                    <li
+                        key={index}
+                        className="flex items-center gap-1 px-3 py-1 bg-white rounded-md shadow-sm cursor-pointer text-sm hover:bg-gray-200 transition-all duration-150"
+                    >
+                        <span className="text-lg">{category.icon}</span>
+                        <span className="text-xs font-medium text-gray-700">{category.name}</span>
+                    </li>
+                ))}
+            </ul>
+        </nav>
     );
-}
+};
 
 export default NavCategoryMenu;

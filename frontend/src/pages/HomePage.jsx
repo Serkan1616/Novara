@@ -7,17 +7,24 @@ import Recommandation from '../components/Recommandation';
 
 import CarouselCustomNavigation from '../components/CarouselCustomNavigation';
 import Footer from '../components/Footer';
+import ProductList from '../components/ProductList';
 
 
 const HomePage = () => {
   return (
 
-    <div className='mx-[200px]'>
-      <NavBar />
-      <NavCategoryMenu />
-      <CarouselCustomNavigation />
-      <Recommandation />
-      <Footer />
+    <div>
+      <div>
+        <NavBar />
+        <NavCategoryMenu />
+      </div>
+      <div className='mx-[200px]'>
+        <CarouselCustomNavigation />
+        <Recommandation />
+        <ProductList />
+        <Footer />
+      </div>
+
     </div>
   )
 }

@@ -33,8 +33,7 @@ const ProductCard = () => {
                         color="gray"
                         className="font-normal opacity-75"
                     >
-                        With plenty of talk and listen time, voice-activated Siri access, and
-                        an available wireless charging case.
+                        With plenty of talk and listen time...
                     </Typography>
                 </div>
 
