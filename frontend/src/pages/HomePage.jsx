@@ -6,8 +6,6 @@ const HomePage = () => {
   return (
     <>
       <NavBar></NavBar>
-
-
       <Link to="/Login">Login</Link>
       <Link to="/register">Register</Link>
     </>
