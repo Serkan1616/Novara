@@ -8,6 +8,7 @@ import Recommandation from '../components/Recommandation';
 import CarouselCustomNavigation from '../components/CarouselCustomNavigation';
 import Footer from '../components/Footer';
 import ProductList from '../components/ProductList';
+import LimitedTimeOffers from '../components/LimitedTimeOffers';
 
 
 const HomePage = () => {
@@ -18,8 +19,9 @@ const HomePage = () => {
         <NavBar />
         <NavCategoryMenu />
       </div>
-      <div className='mx-[200px]'>
+      <div >
         <CarouselCustomNavigation />
+        <LimitedTimeOffers />
         <Recommandation />
         <ProductList />
         <Footer />

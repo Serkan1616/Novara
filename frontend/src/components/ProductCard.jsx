@@ -2,66 +2,42 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { FaStarHalf } from "react-icons/fa";
 
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Button,
-} from "@material-tailwind/react";
+// card cardHeader cardBody cardFooter ekle
 
 const ProductCard = () => {
     return (
-        <Card className="w-96 mx-5">
-            <CardHeader shadow={false} floated={false} className="h-48">
-                <img
-                    src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
-                    alt="card-image"
-                    className="h-full w-full object-cover"
-                />
-            </CardHeader>
-            <CardBody>
-
-                <div className="mb-4 flex items-center justify-between">
-                    <h4 className="text-gray-900">Apple AirPods</h4>
+        <div className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2">
+            <div className="card flex flex-col items-center justify-center rounded-2xl cursor-pointer shadow-[3px_3px_10px_rgba(0,0,0,0.1)] hover:shadow-[10px_10px_10px_rgba(0,0,0,0.3)] transition-shadow duration-300">
+                <div className="cardHeader w-full h-40 sm:h-60 relative rounded-t-2xl">
+                    <img
+                        src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
+                        alt="card-image"
+                        className="h-full w-full object-cover rounded-2xl"
+                    />
                 </div>
-
-                <div className="mb-4">
-                    <Typography
-                        variant="small"
-                        color="gray"
-                        className="font-normal opacity-75"
-                    >
-                        With plenty of talk and listen time...
-                    </Typography>
-                </div>
-
-                <div className="flex flex-col items-center justify-between">
-                    <div className="flex items-center space-x-3 text-yellow-500 mb-4">
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStar />
-                        <FaStarHalf />
+                <div className="cardBody flex flex-col items-center justify-center">
+                    <div className="my-2 sm:my-4 flex items-center justify-center text-xl sm:text-2xl cursor-pointer">
+                        <h4 className="text-gray-900 hover:text-gray-500">Apple AirPods</h4>
                     </div>
-                    <Typography color="blue-gray" className="font-bold">
-                        $95.00
-                    </Typography>
+                    <div className="m-2 sm:m-3">
+                        <p className="text-sm sm:text-lg">With plenty of talk and listen time...</p>
+                    </div>
+                    <div className="flex flex items-center justify-between w-full">
+                        <div className="flex items-center space-x-2 sm:space-x-3 text-yellow-500 mb-2 sm:mb-4">
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStarHalf />
+                        </div>
+                    </div>
                 </div>
-
-
-            </CardBody>
-            <CardFooter className="pt-0">
-                <Button
-                    ripple={false}
-                    fullWidth={true}
-                    className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-                >
-                    Add to Cart
-                </Button>
-            </CardFooter>
-        </Card>
+                <div className="test flex items-center justify-between gap-8">
+                    <p className="mr-2 sm:mr-5 text-sm sm:text-base"> $95.00</p>
+                    <button className="bg-gray-500 hover:bg-gray-200 hover:ease-in-out p-2 sm:p-5 m-1 sm:m-2 rounded-lg cursor-pointer text-xs sm:text-base">Add to Cart</button>
+                </div>
+            </div>
+        </div>
     );
 }
 
