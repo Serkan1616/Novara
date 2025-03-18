@@ -95,9 +95,9 @@ const NavCategoryMenu = () => {
                         {categories.map((category, index) => (
                             <li
                                 key={index}
-                                className="flex items-center gap-2 px-3 py-2 bg-white rounded-md shadow-sm cursor-pointer text-sm hover:bg-gray-200 transition-all duration-200 ease-in-out"
+                                className="flex flex-col items-center justify-center gap-2 px-3 py-2 bg-white rounded-md shadow-sm cursor-pointer text-sm hover:bg-gray-200 transition-all duration-200 ease-in-out"
                             >
-                                <span className="text-lg">{category.icon}</span>
+                                <span className="text-2xl">{category.icon}</span>
                                 <span className="text-sm font-medium text-gray-700">{category.name}</span>
                             </li>
                         ))}

@@ -1,46 +1,32 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import mongoose from "mongoose";
+import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 
-// Uygulama oluşturma
+dotenv.config();
+connectDB();
+
 const app = express();
-
-// Middleware
 app.use(express.json());
 app.use(cors());
 
-// // MongoDB Bağlantısı
-// mongoose
-//     .connect(process.env.MONGO_URI, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     })
-//     .then(() => console.log("MongoDB bağlantısı başarılı"))
-//     .catch((err) => console.error("MongoDB bağlantı hatası:", err));
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
-// Örnek API Endpoint
-
-// Basit bir veri
-const users = [
-    { id: 1, username: 'user1' },
-    { id: 2, username: 'user2' },
-    { id: 3, username: 'user3' },
-];
-
-
-// Basit GET Route
-app.get('/api/users', (req, res) => {
-    res.json(users); // Kullanıcıları JSON formatında döndür
+//Main Root
+app.get("/", (req,res) => {
+    res.send("Server is ready");
 });
 
 
-app.get("/", (req, res) => {
-    res.send("Server Çalışıyor...");
-});
+// MongoDB Bağlantısı
+mongoose
+  .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB'ye Bağlandı"))
+  .catch((err) => console.log("MongoDB Bağlantı Hatası:", err));
 
-// Sunucuyu Başlat
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server ${PORT} portunda çalışıyor`);
-});
+app.listen(PORT, () => console.log(`Server ${PORT} portunda çalışıyor...`));

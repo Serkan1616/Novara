@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ProductCard from './ProductCard';
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
+import { getProducts } from "../services/productService"; // getProducts API'den ürünleri al
 
 const LimitedTimeOffers = () => {
     const [timeLeft, setTimeLeft] = useState(5 * 60 * 60); // 5 hours in seconds
+    const [products, setProducts] = useState([]); // Ürünleri tutmak için state
 
     const scrollRef = useRef(null);
 
@@ -18,6 +20,19 @@ const LimitedTimeOffers = () => {
             scrollRef.current.scrollLeft -= 400; // Soldan sağa 400px kaydırma
         }
     }
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const data = await getProducts(); // API'den ürün verilerini al
+                setProducts(data); // Ürünleri state'e kaydet
+            } catch (error) {
+                console.error("Ürünler alınırken bir hata oluştu:", error);
+            }
+        };
+
+        fetchProducts(); // Ürünleri almak için fonksiyonu çağır
+    }, []);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -52,13 +67,14 @@ const LimitedTimeOffers = () => {
 
             <div className='relative w-full'>
                 <div ref={scrollRef} className='flex items-center gap-5 overflow-x-scroll scrollbar-hide scroll-smooth w-full no-scrollbar'>
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {/* Ürünleri dinamik olarak render et */}
+                    {products.length > 0 ? (
+                        products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))
+                    ) : (
+                        <p className="text-white">Loading Products...</p> // Veri yükleniyorsa gösterilecek mesaj
+                    )}
                 </div>
                 <button onClick={scrollLeft} className='bg-gray-500 p-2 rounded-full shadow-lg absolute top-1/2 left-0 transform -translate-y-1/2'>
                     <MdArrowBackIos className="w-8 h-8 text-white" />
