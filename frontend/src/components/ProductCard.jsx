@@ -42,7 +42,7 @@ const ProductCard = ({ product }) => {
                 <Link to={`/product/${product._id}`}>
                     <div className="w-full h-48 flex-shrink-0 rounded-t-2xl">
                         <img
-                            src={"src" + product.image || defaultImage}
+                            src={"../src" + product.image}
                             alt={product.name}
                             className="w-full h-full object-contain rounded-t-2xl"
                         />
