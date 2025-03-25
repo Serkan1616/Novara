@@ -4,52 +4,47 @@ import { FaBaby, FaCar, FaShopify, FaPersonCircleQuestion } from "react-icons/fa
 import { IoLogoGameControllerB, IoMdWatch } from "react-icons/io";
 import { MdOutlineSportsTennis } from "react-icons/md";
 import { SiHomebridge } from "react-icons/si";
+import { Link } from 'react-router-dom';
 
 const categories = [
-    { name: "Fashion", icon: <FaShopify /> },
-    { name: "Electronic", icon: <FcElectronics /> },
-    { name: "Home & Life", icon: <SiHomebridge /> },
-    { name: "Mother & Baby", icon: <FaBaby /> },
-    { name: "Personal Care", icon: <FaPersonCircleQuestion /> },
-    { name: "Jewelry & Watches", icon: <IoMdWatch /> },
-    { name: "Sports & Outdoors", icon: <MdOutlineSportsTennis /> },
-    { name: "Book, Music, Movie, Game", icon: <IoLogoGameControllerB /> },
-    { name: "Automotive & Motorcycle", icon: <FaCar /> },
+    { name: "Fashion", icon: <FaShopify />, slug: "fashion" },
+    { name: "Electronic", icon: <FcElectronics />, slug: "electronic" },
+    { name: "Home & Life", icon: <SiHomebridge />, slug: "home-life" },
+    { name: "Mother & Baby", icon: <FaBaby />, slug: "mother-baby" },
+    { name: "Personal Care", icon: <FaPersonCircleQuestion />, slug: "personal-care" },
+    { name: "Jewelry & Watches", icon: <IoMdWatch />, slug: "jewelry-watches" },
+    { name: "Sports & Outdoors", icon: <MdOutlineSportsTennis />, slug: "sports-outdoors" },
+    { name: "Book, Music, Movie, Game", icon: <IoLogoGameControllerB />, slug: "entertainment" },
+    { name: "Automotive & Motorcycle", icon: <FaCar />, slug: "automotive" },
 ];
 
 const NavCategoryMenu = () => {
-    // Sidebar'ın görünürlüğünü kontrol eden state
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    // Sidebar açma/kapama fonksiyonu
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
-    // Sidebar dışında bir yere tıklanıp tıklanmadığını kontrol etmek için useRef kullanıyoruz.
     const sidebarRef = useRef(null);
 
     useEffect(() => {
-        // Eğer sidebar açık ise, dışarıya tıklanma olayını kontrol ediyoruz
         const handleClickOutside = (event) => {
             if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-                setIsSidebarOpen(false); // Sidebar dışına tıklanırsa sidebar kapanır
+                setIsSidebarOpen(false); 
             }
         };
 
-        // Event listener'ı component mount olduktan sonra ekliyoruz
         if (isSidebarOpen) {
             document.addEventListener("mousedown", handleClickOutside);
         }
 
-        // Cleanup function: component unmount olduğunda event listener'ı temizliyoruz
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [isSidebarOpen]);
 
     return (
-        <div>
+        <div className="bg-white/90 backdrop-blur-sm border-b mt-[88px] md:mt-[72px]">
             <div className="py-5 relative flex items-center justify-center">
                 {/* "Categories" butonu (Mobil ve Orta ekranlar için) */}
                 <button
@@ -76,29 +71,40 @@ const NavCategoryMenu = () => {
                         </button>
                         <ul className="flex flex-col gap-3">
                             {categories.map((category, index) => (
-                                <li
-                                    key={index}
-                                    className="flex items-center gap-2 px-4 py-3 bg-white rounded-md shadow-sm cursor-pointer text-sm hover:bg-gray-200 transition-all duration-200 ease-in-out"
-                                >
-                                    <span className="text-lg">{category.icon}</span>
-                                    <span className="text-sm font-medium text-gray-700">{category.name}</span>
+                                <li key={index}>
+                                    <Link
+                                        to={`/category/${category.slug}`}
+                                        className="w-full flex items-center gap-3 p-3 rounded-xl
+                                            text-gray-700 hover:bg-gray-100 active:bg-gray-200
+                                            transition-all duration-200"
+                                        onClick={() => setIsSidebarOpen(false)}
+                                    >
+                                        <span className="text-xl">{category.icon}</span>
+                                        <span className="font-medium">{category.name}</span>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
                     </div>
                 </div>
 
-                {/* <nav className="bg-gray-100 py-2 hidden lg:block"> */}
-                {/* Kategoriler (Yalnızca large ekranlar için) */}
                 <nav className="py-2 hidden lg:block">
                     <ul className="max-w-7xl mx-auto flex justify-between gap-4 px-4">
                         {categories.map((category, index) => (
-                            <li
-                                key={index}
-                                className="flex flex-col items-center justify-center gap-2 px-3 py-2 bg-white rounded-md shadow-sm cursor-pointer text-sm hover:bg-gray-200 transition-all duration-200 ease-in-out"
-                            >
-                                <span className="text-2xl">{category.icon}</span>
-                                <span className="text-sm font-medium text-gray-700">{category.name}</span>
+                            <li key={index}>
+                                <Link
+                                    to={`/category/${category.slug}`}
+                                    className="flex flex-col items-center gap-2 p-3 rounded-xl
+                                        hover:bg-gray-100 active:bg-gray-200 group
+                                        transition-all duration-200 min-w-[100px]"
+                                >
+                                    <span className="text-3xl group-hover:scale-110 transition-transform duration-200">
+                                        {category.icon}
+                                    </span>
+                                    <span className="text-xs font-medium text-gray-700 group-hover:text-gray-900">
+                                        {category.name}
+                                    </span>
+                                </Link>
                             </li>
                         ))}
                     </ul>

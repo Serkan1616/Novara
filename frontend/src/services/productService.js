@@ -30,3 +30,14 @@ export const updateProduct = async (id, productData) => {
 export const deleteProduct = async (id) => {
   await axios.delete(`${API_URL}/${id}`);
 };
+
+// 📌 Fetch products by category
+export const getProductsByCategory = async (category) => {
+  try {
+    const response = await axios.get(`${API_URL}/category/${category}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    throw new Error('Failed to fetch products by category');
+  }
+};
