@@ -30,7 +30,7 @@ const NavCategoryMenu = () => {
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-                setIsSidebarOpen(false); 
+                setIsSidebarOpen(false);
             }
         };
 
@@ -44,7 +44,7 @@ const NavCategoryMenu = () => {
     }, [isSidebarOpen]);
 
     return (
-        <div className="bg-white/90 backdrop-blur-sm border-b mt-[88px] md:mt-[72px]">
+        <div className="bg-white/90 backdrop-blur-sm border-b mt-[88px]  md:mt-[20px]">
             <div className="py-5 relative flex items-center justify-center">
                 {/* "Categories" butonu (Mobil ve Orta ekranlar için) */}
                 <button
@@ -57,9 +57,8 @@ const NavCategoryMenu = () => {
                 {/* Sidebar */}
                 <div
                     ref={sidebarRef}
-                    className={`lg:hidden fixed top-0 right-0 h-full w-64 bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out z-30 ${
-                        isSidebarOpen ? "translate-x-0" : "translate-x-full"
-                    }`}
+                    className={`lg:hidden fixed top-0 right-0 h-full w-64 bg-gray-100 shadow-lg transform transition-transform duration-300 ease-in-out z-30 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"
+                        }`}
                 >
                     <div className="p-4 space-y-4">
                         {/* Close Button */}
