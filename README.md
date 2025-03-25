@@ -1,5 +1,12 @@
 # Novara E-Commerce Project
 
+
+![Novara](https://github.com/user-attachments/assets/22d2c97c-b984-497f-8d70-f0f3d7c2e1fe)
+
+
+
+
+
 ## Overview
 Novara is a modern e-commerce platform built with the MERN stack (MongoDB, Express.js, React, Node.js). The project features a responsive design, real-time cart updates, category-based product browsing, and a smooth checkout process.
 
