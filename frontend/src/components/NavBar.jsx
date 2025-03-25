@@ -54,13 +54,13 @@ const NavBar = () => {
     navigate(`/product/${productId}`);
   };
 
-  // 🟢 Sepet sayısını `localStorage`'dan çek
+  // 🟢 Sepet sayısını localStorage'dan çek
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     const totalQuantity = storedCart.reduce((acc, item) => acc + item.quantity, 0);
     setCartCount(totalQuantity);
 
-    // 🔄 `storage` event'ini dinleyerek dinamik güncelleme
+    // 🔄 storage event'ini dinleyerek dinamik güncelleme
     const handleStorageChange = () => {
       const updatedCart = JSON.parse(localStorage.getItem("cart")) || [];
       const newTotalQuantity = updatedCart.reduce((acc, item) => acc + item.quantity, 0);
