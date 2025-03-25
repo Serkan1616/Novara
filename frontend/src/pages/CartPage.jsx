@@ -6,6 +6,8 @@ import NavCategoryMenu from '../components/NavCategoryMenu';
 import Footer from '../components/Footer';
 import Cart from "../components/Cart";
 
+
+//cartpage
 const CartPage = () => {
     return (
         <div>
