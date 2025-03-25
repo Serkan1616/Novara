@@ -41,3 +41,14 @@ export const getProductsByCategory = async (category) => {
     throw new Error('Failed to fetch products by category');
   }
 };
+
+// 📌 Search products
+export const searchProducts = async (query) => {
+  try {
+    const response = await axios.get(`${API_URL}/search?q=${encodeURIComponent(query)}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error searching products:", error);
+    throw new Error('Failed to search products');
+  }
+};
