@@ -12,7 +12,6 @@ const NavBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch all products when component mounts
