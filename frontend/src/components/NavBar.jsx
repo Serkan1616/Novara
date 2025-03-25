@@ -2,11 +2,57 @@ import React, { useEffect, useState } from "react";
 import { FaSearch, FaUser } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import { SlBasket } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Add useNavigate
+import { getProducts } from "../services/productService"; // Add this import
 import bagImage from "../assets/bag.png";
 
 const NavBar = () => {
   const [cartCount, setCartCount] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch all products when component mounts
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        setAllProducts(data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
+
+    if (term.length > 0) {
+      const filtered = allProducts.filter(product => {
+        const name = product.name.toLowerCase();
+        const description = product.description.toLowerCase();
+        const category = product.category.toLowerCase();
+
+        return name.includes(term) ||
+          description.includes(term) ||
+          category.includes(term);
+      });
+      setSearchResults(filtered);
+    } else {
+      setSearchResults([]);
+    }
+  };
+
+  // Handle product selection
+  const handleProductSelect = (productId) => {
+    setSearchTerm("");
+    setSearchResults([]);
+    navigate(`/product/${productId}`);
+  };
 
   // 🟢 Sepet sayısını `localStorage`'dan çek
   useEffect(() => {
@@ -43,8 +89,33 @@ const NavBar = () => {
                 <input
                   type="search"
                   placeholder="Search products..."
+                  value={searchTerm}
+                  onChange={handleSearchChange}
                   className="w-full pl-12 pr-4 py-2.5 rounded-xl border border-gray-200 focus:border-gray-400 focus:ring-0 transition-all duration-200"
                 />
+                {/* Search Results Dropdown */}
+                {searchResults.length > 0 && searchTerm && (
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-lg max-h-96 overflow-y-auto z-50">
+                    {searchResults.map((product) => (
+                      <div
+                        key={product._id}
+                        onClick={() => handleProductSelect(product._id)}
+                        className="flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer"
+                      >
+                        <img
+                          src={`/src${product.image}`}
+                          alt={product.name}
+                          className="w-12 h-12 object-cover rounded"
+                        />
+                        <div>
+                          <p className="text-sm font-medium">{product.name}</p>
+                          <p className="text-xs text-gray-500">${product.price}</p>
+                          <p className="text-xs text-gray-400">{product.category}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
